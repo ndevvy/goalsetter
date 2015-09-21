@@ -1,0 +1,9 @@
+<h1><%= @user.username %></h1>
+
+<h2><%= @user.username %>'s outstanding goals:</h2>
+<%= render partial: 'goals', locals: { goals: @outstanding_goals } %>
+
+<h2> <%= @user.username %>'s completed goals: </h2>
+<%= render partial: 'goals', locals: { goals: @completed_goals } %>
+
+<%= link_to "Add a Goal", new_goal_url %>

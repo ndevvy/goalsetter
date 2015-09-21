@@ -1,0 +1,7 @@
+<ul>
+  <% goals.each do |goal| %>
+    <% if !goal.personal || current_user == @user %>
+      <li><%= link_to goal.title, goal_url(goal) %></li>
+    <% end %>
+  <% end %>
+</ul>

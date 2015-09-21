@@ -1,0 +1,32 @@
+<% if @goal.persisted? %>
+  <% action = goal_url(@goal) %>
+  <% patch = "<input type='hidden' name='_method' value='patch'>".html_safe %>
+  <% text = "Update Goal" %>
+<% else %>
+  <% action = goals_url %>
+  <% text = "Create Goal" %>
+<% end %>
+
+<form class="" action="<%= action %>" method="post">
+  <%= patch if patch %>
+  <%= auth_token %>
+  <label for="Title">Title
+  <input type="text" name="goal[title]" value="<%= @goal.title %>" id="Title">
+  </label>
+  <br><br>
+  <label for="Text">
+    Describe Your Goal
+    <br><textarea name="goal[text]" id="Text"><%=@goal.text%></textarea>
+  </label>
+  <br><br>
+  <label>Private Goal
+  <input type="radio" name="goal[personal]" value="true">
+  </label>
+
+  <label>
+    Public Goal
+    <input type="radio" name="goal[personal]" value="false" checked="checked">
+  </label>
+
+  <input type="submit" value="<%= text %>">
+</form>
