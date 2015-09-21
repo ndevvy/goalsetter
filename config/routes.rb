@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+post '/goals/:id/completed', to: 'goals#complete_goal', as: 'complete_goal'
+
+resource :session, only: [:new, :create, :destroy]
+resources :users, only: [:new, :create, :index, :show]
+resources :goals
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
