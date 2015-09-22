@@ -44,10 +44,9 @@ class GoalsController < ApplicationController
 
   def show
     @goal = Goal.find(params[:id])
-    if !@goal
+      rescue ActiveRecord::RecordNotFound
       flash[:errors] = ['Invalid goal']
       redirect_to users_url
-    end
   end
 
   def complete_goal
@@ -57,6 +56,7 @@ class GoalsController < ApplicationController
     flash[:messages] = ["Goal completed! Yay! Good job!!!"]
     redirect_to(:back)
   end
+
   private
 
   def goal_params
