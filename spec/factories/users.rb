@@ -21,10 +21,12 @@ FactoryGirl.define do
     factory :other_user do
       username "jenkins"
     end
+
+    factory :random_user do
+      username Faker::Internet.user_name
+      password Faker::Internet.password
+    end
+    
   end
 
-  factory :random_user do
-    username Faker::Internet.user_name
-    password Faker::Internet.password
-  end
 end
