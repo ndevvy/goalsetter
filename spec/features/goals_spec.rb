@@ -58,8 +58,8 @@ feature 'users can view goals' do
   end
 
   scenario 'user index page shows goals' do
+    goal
     visit user_url(user)
-    save_and_open_page
     expect(page).to have_content(goal.title)
   end
 
@@ -75,6 +75,7 @@ feature 'users can view goals' do
   end
 
   scenario 'user can see own private goals' do
+    privategoal2
     visit user_url(user2)
     expect(page).to have_content(privategoal2.title)
   end
@@ -93,12 +94,13 @@ feature 'users can delete goals' do
   end
 
   scenario 'can delete own goals' do
+    goal2
     visit goal_url(goal2)
     click_button "Delete Goal"
     expect(current_path).to eq(user_path(user2))
     expect(page).to have_content("Goal deleted!")
-    visit goal_url(goal)
-    (400 .. 599).should include(page.status_code)
+    visit goal_url(goal2)
+    expect(page).to have_content("Invalid goal")
   end
 
   scenario 'cannot delete other user goals' do
